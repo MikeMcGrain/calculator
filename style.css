@@ -1,0 +1,29 @@
+body {
+  text-align: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.grid-container > div {
+  border: 1px solid black;
+  font-size: 30px;
+  padding: 30px;
+}
+
+.display {
+    grid-column: 1/4;
+    background-color: blue;
+}
+
+.operation {
+    background-color: #777;
+  }
+.number {
+    background-color: #3bbced;
+}
