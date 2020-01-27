@@ -8,22 +8,23 @@ body {
   grid-template-rows: repeat(5, 1fr);
   max-width: 550px;
   margin: 0 auto;
+  border: 5px solid black;
 }
 
-.grid-container > div {
+button {
   border: 1px solid black;
   font-size: 30px;
   padding: 30px;
 }
 
 .display {
-    grid-column: 1/4;
-    background-color: blue;
+  grid-column: span 3;
+  background-color: lightblue;
 }
 
 .operation {
-    background-color: #777;
-  }
+  background-color: #777;
+}
 .number {
-    background-color: #3bbced;
+  background-color: #3bbced;
 }
