@@ -2,7 +2,7 @@
 numbers = document.getElementsByClassName("numbers")
 for (let number of numbers) {
   number.addEventListener("click", function() {
-    console.log(number.innerText)
+    displayScreen(number.innerText)
   })
 }
 
@@ -12,4 +12,11 @@ for (let operation of operations) {
   operation.addEventListener("click", function() {
     console.log(operation.innerText)
   })
+}
+
+// render number clicked to display
+function displayScreen(arg) {
+  console.log(arg)
+  let screen = document.getElementById("screen")
+  screen.value = arg
 }

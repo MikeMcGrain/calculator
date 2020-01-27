@@ -16,7 +16,7 @@ body {
   padding: 30px;
 }
 
-.screen {
+#screen {
   grid-column: 1/4;
   background-color: lightblue;
 }
@@ -24,6 +24,7 @@ body {
 .operations {
   background-color: #777;
 }
+
 .numbers {
   background-color: #3bbced;
 }
