@@ -16,11 +16,11 @@ for (let operation of operations) {
 
 // add listeners to clear button
 document.getElementById("clear-btn").addEventListener("click", function(e) {
-  console.log(e.target.innerText)
+  document.getElementById("calc-screen").value = 0
 })
 
 // render number clicked to display
 function displayScreen(arg) {
   let screen = document.getElementById("calc-screen")
-  screen.value==0 ? screen.value=arg : screen.value=screen.value+arg
+  screen.value == 0 ? (screen.value = arg) : (screen.value = screen.value + arg)
 }
