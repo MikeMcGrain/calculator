@@ -2,7 +2,7 @@
 let numbers = document.getElementsByClassName("number-btn")
 for (let number of numbers) {
   number.addEventListener("click", function() {
-    displayScreen(number.innerText)
+    // displayScreen(number.innerText)
     console.log(number.innerText)
   })
 }
@@ -11,22 +11,17 @@ for (let number of numbers) {
 let operations = document.getElementsByClassName("operation-btn")
 for (let operation of operations) {
   operation.addEventListener("click", function() {
-    switch (operation.innerText) {
-      case "Clear": clearScreen()
-    }
+    console.log(operation.innerText)
   })
 }
 
 // add listeners to clear button
-document.getElementById("clear-btn")
+document.getElementById("clear-btn").addEventListener("click", function() {
+  
+})
 
 // render number clicked to display
 function displayScreen(arg) {
-  let screen = document.getElementById("screen")
+  let screen = document.getElementById("calc-screen")
   screen.value = screen.value + arg
-}
-
-// clear screen
-function clearScreen() {
- displayScreen(0)
 }
