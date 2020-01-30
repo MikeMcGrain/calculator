@@ -15,7 +15,7 @@ for (let operation of operations) {
 }
 
 // add listeners to clear button
-document.getElementById("clear-btn").addEventListener("click", function(e) {
+document.getElementById("clear-btn").addEventListener("click", function() {
   document.getElementById("calc-screen").value = 0
 })
 

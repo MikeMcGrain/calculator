@@ -21,6 +21,7 @@ button {
 
 #calc-screen {
   font-size: 35px;
+  text-align: right;
   color: antiquewhite;
   background-color: black;
   grid-column: span 4;
