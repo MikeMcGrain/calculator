@@ -3,6 +3,7 @@ let numbers = document.getElementsByClassName("number-btn")
 for (let number of numbers) {
   number.addEventListener("click", function() {
     displayScreen(number.innerText)
+    console.log(number.innerText)
   })
 }
 

@@ -11,33 +11,36 @@ button {
 
 #calculator {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  background-color: gray;
-  padding: 5px;
-  border: 4px solid black;
+  grid-template-columns: repeat(5, 1fr);
   max-width: 550px;
   margin: 50px auto;
+  padding: 5px;
+  background-color: gray;
+  border: 4px solid black;
 }
 
 #calc-screen {
+  grid-column: span 5;
+  background-color: black;
   font-size: 35px;
   text-align: right;
+  padding: 10px;
   color: antiquewhite;
-  background-color: black;
-  grid-column: span 4;
+  -moz-appearance:textfield; /* Firefox */
+}
+
+/* hides input number arrows in Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }
 
 #clear-btn {
-  grid-column: span 3;
   background-color: rgb(151, 60, 60);
 }
 
 .operation-btn {
   background-color: slategrey;
-}
-
-#decimal-btn {
-  grid-column: span 2;
 }
 
 #equal-btn {

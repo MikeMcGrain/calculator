@@ -9,24 +9,30 @@
   </head>
   <body>
     <div id="calculator">
-      <input id="calc-screen" type="text" value="0" autofocus />
-      <button id="clear-btn">Clear</button>
-      <button class="operation-btn">&divide;</button>
+      <input id="calc-screen" type="number" step="any" value="0" autofocus />
+      <button class="operation-btn">MRC</button>
       <button class="number-btn">7</button>
       <button class="number-btn">8</button>
       <button class="number-btn">9</button>
-      <button class="operation-btn">&times;</button>
+      <button class="operation-btn">&divide;</button>
+
+      <button class="operation-btn">M+</button>
       <button class="number-btn">4</button>
       <button class="number-btn">5</button>
       <button class="number-btn">6</button>
-      <button class="operation-btn">&plus;</button>
+      <button class="operation-btn">&times;</button>
+
+      <button class="operation-btn">M-</button>
       <button class="number-btn">1</button>
       <button class="number-btn">2</button>
       <button class="number-btn">3</button>
       <button class="operation-btn">&minus;</button>
+
+      <button id="clear-btn">C</button>
       <button class="number-btn">0</button>
-      <button class="number-btn" id="decimal-btn">.</button>
+      <button class="number-btn">.</button>
       <button class="operation-btn" id="equal-btn">&equals;</button>
+      <button class="operation-btn">&plus;</button>
     </div>
     <script src="app.js"></script>
   </body>
