@@ -11,6 +11,12 @@ let operations = document.getElementsByClassName("operation-btn")
 for (let operation of operations) {
   operation.addEventListener("click", function() {
     console.log(operation.innerText)
+    switch (operation.innerText) {
+      case "/": console.log("divide"); break
+      case "X": console.log("multiply"); break
+      case "-": console.log("minus"); break
+      case "+": console.log("plus")
+    }
   })
 }
 
