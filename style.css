@@ -1,5 +1,6 @@
 body {
   text-align: center;
+  background: linear-gradient(to right, rgb(92, 55, 228), rgb(39, 38, 38));
 }
 
 button {
@@ -9,10 +10,11 @@ button {
   cursor: pointer;
 }
 
-#calculator {
+#calculator-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  min-height: 75vh;
   max-width: 550px;
+  grid-template-columns: repeat(5, 1fr);
   margin: 50px auto;
   padding: 5px;
   background-color: gray;

@@ -3,7 +3,6 @@ let numbers = document.getElementsByClassName("number-btn")
 for (let number of numbers) {
   number.addEventListener("click", function() {
     displayScreen(number.innerText)
-    console.log(number.innerText)
   })
 }
 
@@ -23,5 +22,8 @@ document.getElementById("clear-btn").addEventListener("click", function() {
 // render number clicked to display
 function displayScreen(arg) {
   let screen = document.getElementById("calc-screen")
+  if (arg === "." && screen.value.includes(".") ) {
+    return
+  }
   screen.value == 0 ? (screen.value = arg) : (screen.value = screen.value + arg)
 }
