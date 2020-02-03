@@ -28,23 +28,24 @@ for (let numberButton of numberButtons) {
 let operatorButtons = document.getElementsByClassName("operator-btn")
 for (let operatorButton of operatorButtons) {
   operatorButton.addEventListener("click", function() {
-      operator = operatorButton.getAttribute("data-operator")
+    operator = operatorButton.getAttribute("data-operator")
   })
 }
 
 // adds click  listener to decimal button
 document.getElementById("decimal").addEventListener("click", function() {
   let screen = document.getElementById("calc-screen")
-  if (screen.value.includes(".") == true) {
+  if (screen.value.includes(".")) {
     return
   } else {
-    if (operator === null) {
-      firstOperand += "."
-      displayScreen(firstOperand)
-    }
-    if (operator !== null) {
-      secondOperand += "."
-      displayScreen(secondOperand)
+    switch (operator) {
+      case null:
+        firstOperand += "."
+        displayScreen(firstOperand)
+        break
+      default:
+        secondOperand += "."
+        displayScreen(secondOperand)
     }
   }
 })
