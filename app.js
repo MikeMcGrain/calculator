@@ -36,6 +36,14 @@ function setOperandSub(operand, number) {
 }
 
 function setOperator(operatorButton) {
+    if (operator !== null && firstOperand !== null) {
+      let screen = document.getElementById("calculator-screen")
+      firstOperand = anotherEval(firstOperand, screen.value)
+      secondOperand = null
+      console.log(firstOperand)
+      console.log(secondOperand)
+      console.log(operator)
+    }
     operator = operatorButton.getAttribute("data-operator")
 }
 
@@ -65,6 +73,18 @@ function evaluateEquation() {
     case "times": displayOnScreen(firstOperand * secondOperand); break
     case "minus": displayOnScreen(firstOperand - secondOperand); break
     case "plus": displayOnScreen(firstOperand + secondOperand); break
+  }
+}
+
+function anotherEval(numA, numB) {
+  numA = parseFloat(numA)
+  numB = parseFloat(numB)
+
+  switch (operator) {
+    case "divide": return numA / numB; break
+    case "times": return numA * numB; break
+    case "minus": return numA - numB; break
+    case "plus": return numA + numB; break
   }
 }
 
