@@ -5,23 +5,13 @@ let operator = null
 // add listeners to number buttons
 let numberButtons = document.getElementsByClassName("number-button")
 for (let numberButton of numberButtons) {
-  numberButton.addEventListener("click", function() {
-    if (operator !== null) {
-      secondOperand = setOperand(secondOperand, numberButton.innerText)
-      displayOnScreen(secondOperand)
-    } else {
-      firstOperand = setOperand(firstOperand, numberButton.innerText)
-      displayOnScreen(firstOperand)
-    }
-  })
+  numberButton.addEventListener("click", function() {setOperand(numberButton.innerText)})
 }
 
 // add listeners to operator buttons
 let operatorButtons = document.getElementsByClassName("operator-button")
 for (let operatorButton of operatorButtons) {
-  operatorButton.addEventListener("click", function() {
-    operator = operatorButton.getAttribute("data-operator")
-  })
+  operatorButton.addEventListener("click", function() {setOperator(operatorButton)})
 }
 
 document.getElementById("decimal-button").addEventListener("click", appendDecimal)
@@ -30,9 +20,23 @@ document.getElementById("equal-button").addEventListener("click", evaluateEquati
 
 document.getElementById("clear-button").addEventListener("click", clearScreen)
 
-function setOperand(operand, number) {
+function setOperand(number) {
+  if (operator !== null) {
+    secondOperand = setOperandSub(secondOperand, number)
+    displayOnScreen(secondOperand)
+  } else {
+    firstOperand = setOperandSub(firstOperand, number)
+    displayOnScreen(firstOperand)
+  }
+}
+
+function setOperandSub(operand, number) {
   operand === null ? (operand = number) : (operand += number)
   return operand
+}
+
+function setOperator(operatorButton) {
+    operator = operatorButton.getAttribute("data-operator")
 }
 
 function appendDecimal() {
