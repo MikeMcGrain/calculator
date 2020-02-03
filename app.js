@@ -2,12 +2,11 @@ let firstOperand = null
 let secondOperand = null
 let operator = null
 
-// adds event listeners to number buttons
+// adds click listeners to number buttons
 let numberButtons = document.getElementsByClassName("number-btn")
 for (let numberButton of numberButtons) {
   numberButton.addEventListener("click", function() {
     if (operator !== null) {
-      // setSecondOperand(numberButton.innerText)
       if (secondOperand === null) {
         secondOperand = numberButton.innerText
       } else {
@@ -15,7 +14,6 @@ for (let numberButton of numberButtons) {
       }
       displayScreen(secondOperand)
     } else {
-      // setFirstOperand(numberButton.innerText)
       if (firstOperand === null) {
         firstOperand = numberButton.innerText
       } else {
@@ -26,7 +24,7 @@ for (let numberButton of numberButtons) {
   })
 }
 
-// adds event listeners to operator buttons
+// adds click listeners to operator buttons
 let operatorButtons = document.getElementsByClassName("operator-btn")
 for (let operatorButton of operatorButtons) {
   operatorButton.addEventListener("click", function() {
@@ -37,7 +35,7 @@ for (let operatorButton of operatorButtons) {
   })
 }
 
-// adds event listener to decimal button
+// adds click  listener to decimal button
 let decimalButton = document.getElementById("decimal")
 decimalButton.addEventListener("click", function() {
   let screen = document.getElementById("calc-screen")
@@ -55,7 +53,7 @@ decimalButton.addEventListener("click", function() {
   }
 })
 
-// adds event listener to equal button
+// adds click listener to equal button
 let equalButton = document.getElementById("equal-btn")
 equalButton.addEventListener("click", function() {
 
@@ -77,7 +75,7 @@ equalButton.addEventListener("click", function() {
   }
 })
 
-// adds listener to clear button
+// adds click listener to clear button
 document.getElementById("clear-btn").addEventListener("click", function() {
   document.getElementById("calc-screen").value = 0
   firstOperand = null
@@ -89,30 +87,4 @@ document.getElementById("clear-btn").addEventListener("click", function() {
 function displayScreen(char) {
   let screen = document.getElementById("calc-screen")
   screen.value = char
-}
-
-// function setFirstOperand(number) {
-//   if (firstOperand === null) {
-//     firstOperand = number;
-//   } else {
-//     firstOperand += number;
-//   }
-// }
-
-// function setSecondOperand(number) {
-//   if (secondOperand === null) {
-//     secondOperand = number;
-//   } else {
-//     secondOperand += number;
-//   }
-// }
-
-function setOperand(operand) {
-  console.log(operand)
-
-  if (firstOperand === null) {
-    return (operand = operand)
-  } else {
-    return (firstOperand += operand)
-  }
 }
