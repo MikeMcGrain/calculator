@@ -28,16 +28,12 @@ for (let numberButton of numberButtons) {
 let operatorButtons = document.getElementsByClassName("operator-btn")
 for (let operatorButton of operatorButtons) {
   operatorButton.addEventListener("click", function() {
-    if (operator == null) {
-      firstOperand = parseFloat(document.getElementById("calc-screen").value)
       operator = operatorButton.getAttribute("data-operator")
-    }
   })
 }
 
 // adds click  listener to decimal button
-let decimalButton = document.getElementById("decimal")
-decimalButton.addEventListener("click", function() {
+document.getElementById("decimal").addEventListener("click", function() {
   let screen = document.getElementById("calc-screen")
   if (screen.value.includes(".") == true) {
     return
@@ -54,11 +50,10 @@ decimalButton.addEventListener("click", function() {
 })
 
 // adds click listener to equal button
-let equalButton = document.getElementById("equal-btn")
-equalButton.addEventListener("click", function() {
-
+document.getElementById("equal-btn").addEventListener("click", function() {
   firstOperand = parseFloat(firstOperand)
   secondOperand = parseFloat(secondOperand)
+
   switch (operator) {
     case "divide":
       displayScreen(firstOperand / secondOperand)
@@ -84,7 +79,6 @@ document.getElementById("clear-btn").addEventListener("click", function() {
 })
 
 // render number clicked to display
-function displayScreen(char) {
-  let screen = document.getElementById("calc-screen")
-  screen.value = char
+function displayScreen(number) {
+  document.getElementById("calc-screen").value = number
 }
