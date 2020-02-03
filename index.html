@@ -4,36 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="app.js" defer></script>
     <link rel="stylesheet" href="style.css" />
     <title>JS Calculator</title>
   </head>
   <body>
     <div id="calculator-grid">
       <input id="calc-screen" value="0" autofocus />
-      <button class="operation-btn">MRC</button>
+      <button class="memory-btn">MRC</button>
       <button class="number-btn">7</button>
       <button class="number-btn">8</button>
       <button class="number-btn">9</button>
-      <button class="operation-btn">&divide;</button>
+      <button class="operator-btn" data-operator="divide">&divide;</button>
 
-      <button class="operation-btn">M+</button>
+      <button class="memory-btn">M+</button>
       <button class="number-btn">4</button>
       <button class="number-btn">5</button>
       <button class="number-btn">6</button>
-      <button class="operation-btn">X</button>
+      <button class="operator-btn" data-operator="times">&times;</button>
 
-      <button class="operation-btn">M-</button>
+      <button class="memory-btn">M-</button>
       <button class="number-btn">1</button>
       <button class="number-btn">2</button>
       <button class="number-btn">3</button>
-      <button class="operation-btn">&minus;</button>
+      <button class="operator-btn" data-operator="minus">&minus;</button>
 
-      <button id="clear-btn">C</button>
+      <button id="clear-btn">AC</button>
       <button class="number-btn">0</button>
       <button class="number-btn">.</button>
-      <button class="operation-btn" id="equal-btn">&equals;</button>
-      <button class="operation-btn">&plus;</button>
+      <button id="equal-btn">&equals;</button>
+      <button class="operator-btn" data-operator="plus">&plus;</button>
     </div>
-    <script src="app.js"></script>
   </body>
 </html>
