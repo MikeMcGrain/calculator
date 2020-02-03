@@ -2,57 +2,82 @@ let firstOperand = null
 let secondOperand = null
 let operator = null
 
-// add listeners to number buttons
+// adds event listeners to number buttons
 let numberButtons = document.getElementsByClassName("number-btn")
 for (let numberButton of numberButtons) {
   numberButton.addEventListener("click", function() {
     if (operator !== null) {
-      document.getElementById("calc-screen").value = 0
-      secondOperand = parseFloat(numberButton.innerText)
-      displayScreen(numberButton.innerText)
+      // setSecondOperand(numberButton.innerText)
+      if (secondOperand === null) {
+        secondOperand = numberButton.innerText
+      } else {
+        secondOperand += numberButton.innerText
+      }
+      displayScreen(secondOperand)
     } else {
-      displayScreen(numberButton.innerText)
-
+      // setFirstOperand(numberButton.innerText)
+      if (firstOperand === null) {
+        firstOperand = numberButton.innerText
+      } else {
+        firstOperand += numberButton.innerText
+      }
+      displayScreen(firstOperand)
     }
-
   })
 }
 
-// add listeners to operator buttons
+// adds event listeners to operator buttons
 let operatorButtons = document.getElementsByClassName("operator-btn")
 for (let operatorButton of operatorButtons) {
   operatorButton.addEventListener("click", function() {
-    let screen = document.getElementById("calc-screen")
     if (operator == null) {
-      firstOperand = parseFloat(screen.value)
-      console.log(firstOperand)
+      firstOperand = parseFloat(document.getElementById("calc-screen").value)
       operator = operatorButton.getAttribute("data-operator")
-      console.log(operator)
     }
-
-    // let screen = document.getElementById("calc-screen")
-    // if (screen.value.slice(-1) === " " ) {return}
-    // else {displayScreen(` ${operatorButton.innerText} `)}
-
-
-    // }
   })
 }
 
-// add listener to equal button
-let equalButton = document.getElementById("equal-btn")
-equalButton.addEventListener("click", function() {
-  //evaluate expression
-  document.getElementById("calc-screen").value = 0
-  switch (operator) {
-    case "divide": displayScreen(firstOperand / secondOperand) ; break
-    case "times": displayScreen(firstOperand * secondOperand); break
-    case "minus": displayScreen(firstOperand - secondOperand); break
-    case "plus": displayScreen(firstOperand + secondOperand); break
+// adds event listener to decimal button
+let decimalButton = document.getElementById("decimal")
+decimalButton.addEventListener("click", function() {
+  let screen = document.getElementById("calc-screen")
+  if (screen.value.includes(".") == true) {
+    return
+  } else {
+    if (operator === null) {
+      firstOperand += "."
+      displayScreen(firstOperand)
+    }
+    if (operator !== null) {
+      secondOperand += "."
+      displayScreen(secondOperand)
+    }
   }
 })
 
-// add listeners to clear button
+// adds event listener to equal button
+let equalButton = document.getElementById("equal-btn")
+equalButton.addEventListener("click", function() {
+
+  firstOperand = parseFloat(firstOperand)
+  secondOperand = parseFloat(secondOperand)
+  switch (operator) {
+    case "divide":
+      displayScreen(firstOperand / secondOperand)
+      break
+    case "times":
+      displayScreen(firstOperand * secondOperand)
+      break
+    case "minus":
+      displayScreen(firstOperand - secondOperand)
+      break
+    case "plus":
+      displayScreen(firstOperand + secondOperand)
+      break
+  }
+})
+
+// adds listener to clear button
 document.getElementById("clear-btn").addEventListener("click", function() {
   document.getElementById("calc-screen").value = 0
   firstOperand = null
@@ -63,10 +88,31 @@ document.getElementById("clear-btn").addEventListener("click", function() {
 // render number clicked to display
 function displayScreen(char) {
   let screen = document.getElementById("calc-screen")
-  if (char === "." && screen.value.includes(".")) {
-    return
+  screen.value = char
+}
+
+// function setFirstOperand(number) {
+//   if (firstOperand === null) {
+//     firstOperand = number;
+//   } else {
+//     firstOperand += number;
+//   }
+// }
+
+// function setSecondOperand(number) {
+//   if (secondOperand === null) {
+//     secondOperand = number;
+//   } else {
+//     secondOperand += number;
+//   }
+// }
+
+function setOperand(operand) {
+  console.log(operand)
+
+  if (firstOperand === null) {
+    return (operand = operand)
+  } else {
+    return (firstOperand += operand)
   }
-  screen.value == 0
-    ? (screen.value = char)
-    : (screen.value = screen.value + char)
 }
