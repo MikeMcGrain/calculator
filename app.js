@@ -16,7 +16,9 @@ for (let operatorButton of operatorButtons) {
 
 document.getElementById("decimal-button").addEventListener("click", appendDecimal)
 
-document.getElementById("equal-button").addEventListener("click", evaluateEquation)
+document.getElementById("equal-button").addEventListener("click", function() {
+  displayOnScreen(evaluateEquation(firstOperand, secondOperand))
+})
 
 document.getElementById("clear-button").addEventListener("click", clearScreen)
 
@@ -38,12 +40,16 @@ function setOperandSub(operand, number) {
 function setOperator(operatorButton) {
     if (operator !== null && firstOperand !== null) {
       let screen = document.getElementById("calculator-screen")
-      firstOperand = anotherEval(firstOperand, screen.value)
+      firstOperand = evaluateEquation(firstOperand, screen.value)
       secondOperand = null
-      console.log(firstOperand)
-      console.log(secondOperand)
-      console.log(operator)
+      displayOnScreen(firstOperand)
     }
+      // continue after equal button
+  // if (equalStatus == true) {
+  //   firstOperand = screen.value
+  //   secondOperand = null
+  //   equalStatus = false
+  // }
     operator = operatorButton.getAttribute("data-operator")
 }
 
@@ -64,19 +70,7 @@ function appendDecimal() {
   }
 }
 
-function evaluateEquation() {
-  firstOperand = parseFloat(firstOperand)
-  secondOperand = parseFloat(secondOperand)
-
-  switch (operator) {
-    case "divide": displayOnScreen(firstOperand / secondOperand); break
-    case "times": displayOnScreen(firstOperand * secondOperand); break
-    case "minus": displayOnScreen(firstOperand - secondOperand); break
-    case "plus": displayOnScreen(firstOperand + secondOperand); break
-  }
-}
-
-function anotherEval(numA, numB) {
+function evaluateEquation(numA, numB) {
   numA = parseFloat(numA)
   numB = parseFloat(numB)
 
