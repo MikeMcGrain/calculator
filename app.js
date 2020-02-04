@@ -1,22 +1,30 @@
 let firstOperand = null
 let secondOperand = null
 let operator = null
+let equalStatus = false
 
 // add listeners to number buttons
 let numberButtons = document.getElementsByClassName("number-button")
 for (let numberButton of numberButtons) {
-  numberButton.addEventListener("click", function() {setOperand(numberButton.innerText)})
+  numberButton.addEventListener("click", function() {
+    setOperand(numberButton.innerText)
+  })
 }
 
 // add listeners to operator buttons
 let operatorButtons = document.getElementsByClassName("operator-button")
 for (let operatorButton of operatorButtons) {
-  operatorButton.addEventListener("click", function() {setOperator(operatorButton)})
+  operatorButton.addEventListener("click", function() {
+    setOperator(operatorButton)
+  })
 }
 
-document.getElementById("decimal-button").addEventListener("click", appendDecimal)
+document
+  .getElementById("decimal-button")
+  .addEventListener("click", appendDecimal)
 
 document.getElementById("equal-button").addEventListener("click", function() {
+  equalStatus = true
   displayOnScreen(evaluateEquation(firstOperand, secondOperand))
 })
 
@@ -38,19 +46,24 @@ function setOperandSub(operand, number) {
 }
 
 function setOperator(operatorButton) {
+  // continue after equal button
+  console.log("operator button pressed")
+  if (equalStatus == true) {
+    console.log("status true")
+    let screen = document.getElementById("calculator-screen")
+    firstOperand = screen.value
+    secondOperand = null
+    equalStatus = false
+  } else {
     if (operator !== null && firstOperand !== null) {
+      console.log("else is true")
       let screen = document.getElementById("calculator-screen")
       firstOperand = evaluateEquation(firstOperand, screen.value)
       secondOperand = null
       displayOnScreen(firstOperand)
     }
-      // continue after equal button
-  // if (equalStatus == true) {
-  //   firstOperand = screen.value
-  //   secondOperand = null
-  //   equalStatus = false
-  // }
-    operator = operatorButton.getAttribute("data-operator")
+  }
+  operator = operatorButton.getAttribute("data-operator")
 }
 
 function appendDecimal() {
@@ -75,10 +88,18 @@ function evaluateEquation(numA, numB) {
   numB = parseFloat(numB)
 
   switch (operator) {
-    case "divide": return numA / numB; break
-    case "times": return numA * numB; break
-    case "minus": return numA - numB; break
-    case "plus": return numA + numB; break
+    case "divide":
+      return numA / numB
+      break
+    case "times":
+      return numA * numB
+      break
+    case "minus":
+      return numA - numB
+      break
+    case "plus":
+      return numA + numB
+      break
   }
 }
 
@@ -91,4 +112,5 @@ function clearScreen() {
   firstOperand = null
   secondOperand = null
   operator = null
+  equalStatus = false
 }
