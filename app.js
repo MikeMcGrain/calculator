@@ -40,14 +40,14 @@ function setOperandSub(operand, number) {
 }
 
 function setOperator(operatorButton) {
+  let screen = document.getElementById("calculator-screen")
+
   if (equalStatus == true) {
-    let screen = document.getElementById("calculator-screen")
     firstOperand = screen.value
     secondOperand = null
     equalStatus = false
   } else {
     if (operator !== null && firstOperand !== null) {
-      let screen = document.getElementById("calculator-screen")
       firstOperand = evaluateEquation(firstOperand, screen.value)
       secondOperand = null
       displayOnScreen(firstOperand)
