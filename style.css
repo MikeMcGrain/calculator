@@ -5,7 +5,7 @@
 
 body {
   text-align: center;
-  background: linear-gradient(to right, rgb(2, 23, 92), rgb(124, 130, 212));
+  background: linear-gradient(to right, black, seagreen);
 }
 
 button {
