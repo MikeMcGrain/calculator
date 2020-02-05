@@ -31,11 +31,11 @@ document.getElementById("memory-store-button").addEventListener("click", functio
 
 document.getElementById("memory-recall-button").addEventListener("click", function() {
   let number = localStorage.getItem("calculator-memory")
-  setOperand(JSON.parse(number))
+  if (number !== null && number !== "") {setOperand(JSON.parse(number))} 
+  else {return}
 })
 
 document.getElementById("memory-clear-button").addEventListener("click", function() {
-  let screen = document.getElementById("calculator-screen")
   localStorage.setItem("calculator-memory", "")
 })
 
@@ -57,7 +57,7 @@ function setOperator(operatorButton) {
     secondOperand = null
     equalStatus = false
   } else {
-    if (operator !== null && firstOperand !== null) {
+    if (operator !== null && firstOperand !== null && secondOperand !==null) {
       firstOperand = evaluateEquation(firstOperand, screen.value)
       secondOperand = null
       displayOnScreen(firstOperand)
