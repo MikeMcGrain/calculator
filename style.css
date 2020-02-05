@@ -1,50 +1,38 @@
 @font-face {
   font-family: digital-font;
-  src: url('fonts/digital-7\ \(mono\).ttf');
+  src: url('fonts/DS-DIGI.TTF');
 }
 
 body {
   text-align: center;
-  background: linear-gradient(to right, rgb(7, 7, 7), rgb(66, 66, 66));
-}
-p {
-  font-family: digital-font;
-  color: white;
-  font-size: 60px;
+  background: linear-gradient(to right, rgb(2, 23, 92), rgb(124, 130, 212));
 }
 
 button {
-  font-size: 30px;
-  padding: 20px 0px;
+  font-size: 25px;
   margin: 5px;
   cursor: pointer;
 }
 
 #calculator-grid {
   display: grid;
-  min-height: 75vh;
+  min-height: 70vh;
   max-width: 500px;
   grid-template-columns: repeat(5, 1fr);
   margin: 50px auto;
-  padding: 5px;
-  background-color: gray;
+  padding: 10px;
+  background-color: rgb(63, 61, 61);
   border: 4px solid black;
 }
 
 #calculator-screen {
   grid-column: span 5;
-  background-color: black;
-  font-size: 65px;
+  max-width: 495px;
+  background-color: lightgray;
+  font-size: 6em;
   text-align: right;
   font-family: digital-font;
-  color: antiquewhite;
-  -moz-appearance: textfield; Firefox
-}
-
-/* hides input number arrows in Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
+  margin: 10px;
 }
 
 #clear-button {
