@@ -24,19 +24,35 @@ document.getElementById("equal-button").addEventListener("click", function() {
 
 document.getElementById("clear-button").addEventListener("click", clearScreen)
 
+// add listener to M+
+let mPlusButton = document.getElementById("memory-store-button")
+mPlusButton.addEventListener("click", function() {
+  let screen = document.getElementById("calculator-screen")
+  localStorage.setItem("calculator-memory", JSON.stringify(screen.value))
+})
+
+// add listener to MC
+let mClearButton = document.getElementById("memory-clear-button")
+mClearButton.addEventListener("click", function() {
+  let screen = document.getElementById("calculator-screen")
+  localStorage.setItem("calculator-memory", "")
+})
+
+// add listener to MR
+let mRecallButton = document.getElementById("memory-recall-button")
+mRecallButton.addEventListener("click", function() {
+  let number = localStorage.getItem("calculator-memory")
+  setOperand(JSON.parse(number))
+})
+
 function setOperand(number) {
   if (operator !== null) {
-    secondOperand = setOperandSub(secondOperand, number)
+    secondOperand === null ? (secondOperand = number) : (secondOperand += number)
     displayOnScreen(secondOperand)
   } else {
-    firstOperand = setOperandSub(firstOperand, number)
+    firstOperand === null ? (firstOperand = number) : (firstOperand += number)
     displayOnScreen(firstOperand)
   }
-}
-
-function setOperandSub(operand, number) {
-  operand === null ? (operand = number) : (operand += number)
-  return operand
 }
 
 function setOperator(operatorButton) {
