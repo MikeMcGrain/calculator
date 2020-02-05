@@ -1,7 +1,7 @@
 let firstOperand = null
 let secondOperand = null
 let operator = null
-let equalStatus = false
+let equalIsPressed = false
 
 // add listeners to number buttons
 let numberButtons = document.getElementsByClassName("number-button")
@@ -17,8 +17,8 @@ for (let operatorButton of operatorButtons) {
 
 document.getElementById("decimal-button").addEventListener("click", appendDecimal)
 
-document.getElementById("equal-button").addEventListener("click", function() {
-  equalStatus = true
+document.getElementById("equal-button").addEventListener("click", function() { 
+  equalIsPressed = true
   displayOnScreen(evaluateEquation(firstOperand, secondOperand))
 })
 
@@ -31,7 +31,7 @@ document.getElementById("memory-store-button").addEventListener("click", functio
 
 document.getElementById("memory-recall-button").addEventListener("click", function() {
   let number = localStorage.getItem("calculator-memory")
-  if (number !== null && number !== "") {setOperand(JSON.parse(number))} 
+  if (number !== null && number !== ""  && equalIsPressed !== true) {setOperand(JSON.parse(number))} 
   else {return}
 })
 
@@ -52,10 +52,10 @@ function setOperand(number) {
 function setOperator(operatorButton) {
   let screen = document.getElementById("calculator-screen")
 
-  if (equalStatus == true) {
+  if (equalIsPressed == true) {
     firstOperand = screen.value
     secondOperand = null
-    equalStatus = false
+    equalIsPressed = false
   } else {
     if (operator !== null && firstOperand !== null && secondOperand !==null) {
       firstOperand = evaluateEquation(firstOperand, screen.value)
@@ -103,5 +103,5 @@ function clearScreen() {
   firstOperand = null
   secondOperand = null
   operator = null
-  equalStatus = false
+  equalIsPressed = false
 }
