@@ -17,7 +17,7 @@ button {
 #calculator-grid {
   display: grid;
   min-height: 70vh;
-  max-width: 500px;
+  max-width: 550px;
   grid-template-columns: repeat(5, 1fr);
   margin: 50px auto;
   padding: 10px;
@@ -27,7 +27,7 @@ button {
 
 #calculator-screen {
   grid-column: span 5;
-  max-width: 495px;
+  max-width: 530px;
   background-color: lightgray;
   font-size: 6em;
   text-align: right;
