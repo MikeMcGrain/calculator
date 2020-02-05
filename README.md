@@ -6,7 +6,7 @@ A calculator application written with HTML, CSS, and pure JavaScript (no externa
 
 <br>
 
-Try it out [here](https://mikemcgrain.github.io/calculator/)
+Calculate [here](https://mikemcgrain.github.io/calculator/)
 
 <br>
 
@@ -14,7 +14,7 @@ Try it out [here](https://mikemcgrain.github.io/calculator/)
 
 ## Summary
 
-TBD  
+The logic involved with this was quite challenging.  I'm still sure there is room for improvement.  There are only few way to break this, but one needs to try pretty hard.  This was also the first time I've used CSS Grid to layout a project.  I'm looking forward to using this again in the future.
 
 ## Author
 
