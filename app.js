@@ -24,25 +24,19 @@ document.getElementById("equal-button").addEventListener("click", function() {
 
 document.getElementById("clear-button").addEventListener("click", clearScreen)
 
-// add listener to M+
-let mPlusButton = document.getElementById("memory-store-button")
-mPlusButton.addEventListener("click", function() {
+document.getElementById("memory-store-button").addEventListener("click", function() {
   let screen = document.getElementById("calculator-screen")
   localStorage.setItem("calculator-memory", JSON.stringify(screen.value))
 })
 
-// add listener to MC
-let mClearButton = document.getElementById("memory-clear-button")
-mClearButton.addEventListener("click", function() {
-  let screen = document.getElementById("calculator-screen")
-  localStorage.setItem("calculator-memory", "")
-})
-
-// add listener to MR
-let mRecallButton = document.getElementById("memory-recall-button")
-mRecallButton.addEventListener("click", function() {
+document.getElementById("memory-recall-button").addEventListener("click", function() {
   let number = localStorage.getItem("calculator-memory")
   setOperand(JSON.parse(number))
+})
+
+document.getElementById("memory-clear-button").addEventListener("click", function() {
+  let screen = document.getElementById("calculator-screen")
+  localStorage.setItem("calculator-memory", "")
 })
 
 function setOperand(number) {
