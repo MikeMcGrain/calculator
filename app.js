@@ -1,28 +1,32 @@
+const DECIMAL_LIMIT = 5
+
 let firstOperand = null
 let secondOperand = null
 let operator = null
 let equalIsPressed = false
 
-const DECIMAL_LIMIT = 5
-
 // add listeners to number buttons
 let numberButtons = document.getElementsByClassName("number-button")
 for (let numberButton of numberButtons) {
-  numberButton.addEventListener("click", function() {setOperand(numberButton.innerText)})
+  numberButton.addEventListener("click", function() {
+    setOperand(numberButton.innerText)
+  })
 }
 
 // add listeners to operator buttons
 let operatorButtons = document.getElementsByClassName("operator-button")
 for (let operatorButton of operatorButtons) {
-  operatorButton.addEventListener("click", function() {setOperator(operatorButton)})
+  operatorButton.addEventListener("click", function() {
+    setOperator(operatorButton)
+  })
 }
 
 document.getElementById("decimal-button").addEventListener("click", appendDecimal)
 
-document.getElementById("equal-button").addEventListener("click", function() { 
+document.getElementById("equal-button").addEventListener("click", function() {
   equalIsPressed = true
-  let number = evaluateEquation(firstOperand, secondOperand)
-  displayOnScreen(number.toString())
+  let number = solveEquation(firstOperand, secondOperand)
+  displayOnScreen(number)
 })
 
 document.getElementById("clear-button").addEventListener("click", clearScreen)
@@ -34,8 +38,11 @@ document.getElementById("memory-store-button").addEventListener("click", functio
 
 document.getElementById("memory-recall-button").addEventListener("click", function() {
   let number = localStorage.getItem("calculator-memory")
-  if (number !== null && number !== ""  && equalIsPressed !== true) {setOperand(JSON.parse(number))} 
-  else {return}
+  if (number !== null && number !== "" && equalIsPressed !== true) {
+    setOperand(JSON.parse(number))
+  } else {
+    return
+  }
 })
 
 document.getElementById("memory-clear-button").addEventListener("click", function() {
@@ -60,10 +67,10 @@ function setOperator(operatorButton) {
     secondOperand = null
     equalIsPressed = false
   } else {
-    if (operator !== null && firstOperand !== null && secondOperand !==null) {
-      firstOperand = evaluateEquation(firstOperand, screen.value)
+    if (operator !== null && firstOperand !== null && secondOperand !== null) {
+      firstOperand = solveEquation(firstOperand, screen.value)
       secondOperand = null
-      displayOnScreen(firstOperand.toString())
+      displayOnScreen(firstOperand)
     }
   }
   operator = operatorButton.getAttribute("data-operator")
@@ -71,37 +78,34 @@ function setOperator(operatorButton) {
 
 function appendDecimal() {
   let screen = document.getElementById("calculator-screen")
-  if (screen.value.includes(".")) {return} 
-  else {
-    switch (operator) {
-      case null:
-        firstOperand += "."
-        displayOnScreen(firstOperand)
-        break
-      default:
-        secondOperand += "."
-        displayOnScreen(secondOperand)
-    }
+  if (screen.value.includes(".")) {
+    return
+  } else {
+    operator == null
+      ? ((firstOperand += "."), displayOnScreen(firstOperand))
+      : ((secondOperand += "."), displayOnScreen(secondOperand))
   }
 }
 
-function evaluateEquation(numA, numB) {
+function solveEquation(numA, numB) {
   numA = parseFloat(numA)
   numB = parseFloat(numB)
+  let solution
 
   switch (operator) {
-    case "divide": return numA / numB; break
-    case "times": return numA * numB; break
-    case "minus": return numA - numB; break
-    case "plus": return numA + numB; break
+    case "divide": solution = numA / numB; break
+    case "times": solution = numA * numB; break
+    case "minus": solution = numA - numB; break
+    case "plus": solution = numA + numB
   }
+  return solution.toString()
 }
 
 function displayOnScreen(number) {
   if (number.includes(".") && number.split(".")[1].length > DECIMAL_LIMIT) {
-      number = parseFloat(number).toFixed(5)
+    number = parseFloat(number).toFixed(5)
   }
-  document.getElementById("calculator-screen").value = number 
+  document.getElementById("calculator-screen").value = number
 }
 
 function clearScreen() {
