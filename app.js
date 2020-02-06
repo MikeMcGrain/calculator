@@ -8,38 +8,34 @@ let equalIsPressed = false
 // add listeners to number buttons
 let numberButtons = document.getElementsByClassName("number-button")
 for (let numberButton of numberButtons) {
-  numberButton.addEventListener("click", function() {
-    setOperand(numberButton.innerText)
-  })
+  numberButton.addEventListener("click", function() {setOperand(numberButton.innerText)})
 }
 
 // add listeners to operator buttons
 let operatorButtons = document.getElementsByClassName("operator-button")
 for (let operatorButton of operatorButtons) {
-  operatorButton.addEventListener("click", function() {
-    setOperator(operatorButton)
-  })
+  operatorButton.addEventListener("click", function() {setOperator(operatorButton)})
 }
 
 document.getElementById("decimal-button").addEventListener("click", appendDecimal)
 
 document.getElementById("equal-button").addEventListener("click", function() {
   equalIsPressed = true
-  let number = solveEquation(firstOperand, secondOperand)
-  displayOnScreen(number)
+  const NUMBER = solveEquation(firstOperand, secondOperand)
+  displayOnScreen(NUMBER)
 })
 
 document.getElementById("clear-button").addEventListener("click", clearScreen)
 
 document.getElementById("memory-store-button").addEventListener("click", function() {
-  let screen = document.getElementById("calculator-screen")
-  localStorage.setItem("calculator-memory", JSON.stringify(screen.value))
+  const SCREEN = document.getElementById("calculator-screen")
+  localStorage.setItem("calculator-memory", JSON.stringify(SCREEN.value))
 })
 
 document.getElementById("memory-recall-button").addEventListener("click", function() {
-  let number = localStorage.getItem("calculator-memory")
-  if (number !== null && number !== "" && equalIsPressed !== true) {
-    setOperand(JSON.parse(number))
+  const NUMBER = localStorage.getItem("calculator-memory")
+  if (NUMBER !== null && NUMBER !== "" && equalIsPressed !== true) {
+    setOperand(JSON.parse(NUMBER))
   } else {
     return
   }
@@ -60,15 +56,15 @@ function setOperand(number) {
 }
 
 function setOperator(operatorButton) {
-  let screen = document.getElementById("calculator-screen")
+  const SCREEN = document.getElementById("calculator-screen")
 
   if (equalIsPressed == true) {
-    firstOperand = screen.value
+    firstOperand = SCREEN.value
     secondOperand = null
     equalIsPressed = false
   } else {
     if (operator !== null && firstOperand !== null && secondOperand !== null) {
-      firstOperand = solveEquation(firstOperand, screen.value)
+      firstOperand = solveEquation(firstOperand, SCREEN.value)
       secondOperand = null
       displayOnScreen(firstOperand)
     }
@@ -77,8 +73,8 @@ function setOperator(operatorButton) {
 }
 
 function appendDecimal() {
-  let screen = document.getElementById("calculator-screen")
-  if (screen.value.includes(".")) {
+  const SCREEN = document.getElementById("calculator-screen")
+  if (SCREEN.value.includes(".")) {
     return
   } else {
     operator == null
