@@ -63,7 +63,7 @@ function setOperator(operatorButton) {
     if (operator !== null && firstOperand !== null && secondOperand !==null) {
       firstOperand = evaluateEquation(firstOperand, screen.value)
       secondOperand = null
-      displayOnScreen(firstOperand)
+      displayOnScreen(firstOperand.toString())
     }
   }
   operator = operatorButton.getAttribute("data-operator")
