@@ -3,6 +3,8 @@ let secondOperand = null
 let operator = null
 let equalIsPressed = false
 
+const DECIMAL_LIMIT = 5
+
 // add listeners to number buttons
 let numberButtons = document.getElementsByClassName("number-button")
 for (let numberButton of numberButtons) {
@@ -19,7 +21,8 @@ document.getElementById("decimal-button").addEventListener("click", appendDecima
 
 document.getElementById("equal-button").addEventListener("click", function() { 
   equalIsPressed = true
-  displayOnScreen(evaluateEquation(firstOperand, secondOperand))
+  let number = evaluateEquation(firstOperand, secondOperand)
+  displayOnScreen(number.toString())
 })
 
 document.getElementById("clear-button").addEventListener("click", clearScreen)
@@ -95,7 +98,10 @@ function evaluateEquation(numA, numB) {
 }
 
 function displayOnScreen(number) {
-  document.getElementById("calculator-screen").value = number
+  if (number.includes(".") && number.split(".")[1].length > DECIMAL_LIMIT) {
+      number = parseFloat(number).toFixed(5)
+  }
+  document.getElementById("calculator-screen").value = number 
 }
 
 function clearScreen() {
