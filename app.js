@@ -14,7 +14,8 @@ for (let numberButton of numberButtons) {
 // add listeners to operator buttons
 let operatorButtons = document.getElementsByClassName("operator-button")
 for (let operatorButton of operatorButtons) {
-  operatorButton.addEventListener("click", function() {setOperator(operatorButton)})
+  operatorButton.addEventListener("click", function() {setOperator(operatorButton)
+  })
 }
 
 document.getElementById("decimal-button").addEventListener("click", appendDecimal)
@@ -46,12 +47,12 @@ document.getElementById("memory-clear-button").addEventListener("click", functio
 })
 
 function setOperand(number) {
-  if (operator !== null) {
-    secondOperand === null ? (secondOperand = number) : (secondOperand += number)
-    displayOnScreen(secondOperand)
-  } else {
+  if (operator == null) {
     firstOperand === null ? (firstOperand = number) : (firstOperand += number)
     displayOnScreen(firstOperand)
+  } else {
+    secondOperand === null ? (secondOperand = number) : (secondOperand += number)
+    displayOnScreen(secondOperand)
   }
 }
 
