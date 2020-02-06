@@ -63,7 +63,7 @@ function setOperator(operatorButton) {
     secondOperand = null
     equalIsPressed = false
   } else {
-    if (operator !== null && firstOperand !== null && secondOperand !== null) {
+    if (operator && firstOperand && secondOperand !== null) {
       firstOperand = solveEquation(firstOperand, SCREEN.value)
       secondOperand = null
       displayOnScreen(firstOperand)
