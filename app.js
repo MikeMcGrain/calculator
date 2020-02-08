@@ -3,7 +3,6 @@ const DECIMAL_LIMIT = 5
 let firstOperand = null
 let secondOperand = null
 let operator = null
-let equalIsPressed = false
 
 // add listeners to number buttons
 let numberButtons = document.getElementsByClassName("number-button")
@@ -18,28 +17,37 @@ for (let operatorButton of operatorButtons) {
   })
 }
 
-document.getElementById("decimal-button").addEventListener("click", appendDecimal)
+document.getElementById("decimal-button").addEventListener("click", function(){
+  const scree = document.getElementById("calculator-screen")
+  if (screen.value.includes(".")) {return}
 
-document.getElementById("equal-button").addEventListener("click", function() {
-  equalIsPressed = true
-  const NUMBER = solveEquation(firstOperand, secondOperand)
-  displayOnScreen(NUMBER)
+  operator == null ? displayOnScreen(firstOperand += ".") : displayOnScreen(secondOperand += ".")
 })
 
-document.getElementById("clear-button").addEventListener("click", clearScreen)
+document.getElementById("equal-button").addEventListener("click", function() {
+  const number = solveEquation(firstOperand, secondOperand).toString()
+  firstOperand = number
+  secondOperand = null
+  operator = null
+  displayOnScreen(number)
+})
+
+document.getElementById("clear-button").addEventListener("click", function(){
+  document.getElementById("calculator-screen").value = 0
+  firstOperand = null
+  secondOperand = null
+  operator = null
+})
 
 document.getElementById("memory-store-button").addEventListener("click", function() {
-  const SCREEN = document.getElementById("calculator-screen")
-  localStorage.setItem("calculator-memory", JSON.stringify(SCREEN.value))
+  const screen = document.getElementById("calculator-screen")
+  localStorage.setItem("calculator-memory", JSON.stringify(screen.value))
 })
 
 document.getElementById("memory-recall-button").addEventListener("click", function() {
-  const NUMBER = localStorage.getItem("calculator-memory")
-  if (NUMBER !== null && NUMBER !== "" && equalIsPressed !== true) {
-    setOperand(JSON.parse(NUMBER))
-  } else {
-    return
-  }
+  const number = localStorage.getItem("calculator-memory")
+  if (number !== null && number !== "") {setOperand(JSON.parse(number))} 
+  else {return}
 })
 
 document.getElementById("memory-clear-button").addEventListener("click", function() {
@@ -57,45 +65,25 @@ function setOperand(number) {
 }
 
 function setOperator(operatorButton) {
-  const SCREEN = document.getElementById("calculator-screen")
-
-  if (equalIsPressed == true) {
-    firstOperand = SCREEN.value
+  const screen  = document.getElementById("calculator-screen")
+  if (operator && firstOperand && secondOperand !== null) {
+    firstOperand = solveEquation(firstOperand, screen.value).toString()
     secondOperand = null
-    equalIsPressed = false
-  } else {
-    if (operator && firstOperand && secondOperand !== null) {
-      firstOperand = solveEquation(firstOperand, SCREEN.value)
-      secondOperand = null
-      displayOnScreen(firstOperand)
-    }
+    displayOnScreen(firstOperand)
   }
   operator = operatorButton.getAttribute("data-operator")
-}
-
-function appendDecimal() {
-  const SCREEN = document.getElementById("calculator-screen")
-  if (SCREEN.value.includes(".")) {
-    return
-  } else {
-    operator == null
-      ? ((firstOperand += "."), displayOnScreen(firstOperand))
-      : ((secondOperand += "."), displayOnScreen(secondOperand))
-  }
 }
 
 function solveEquation(numA, numB) {
   numA = parseFloat(numA)
   numB = parseFloat(numB)
-  let solution
 
   switch (operator) {
-    case "divide": solution = numA / numB; break
-    case "times": solution = numA * numB; break
-    case "minus": solution = numA - numB; break
-    case "plus": solution = numA + numB
+    case "divide": return numA / numB
+    case "times": return numA * numB
+    case "minus": return numA - numB
+    case "plus": return numA + numB
   }
-  return solution.toString()
 }
 
 function displayOnScreen(number) {
@@ -103,12 +91,4 @@ function displayOnScreen(number) {
     number = parseFloat(number).toFixed(5)
   }
   document.getElementById("calculator-screen").value = number
-}
-
-function clearScreen() {
-  document.getElementById("calculator-screen").value = 0
-  firstOperand = null
-  secondOperand = null
-  operator = null
-  equalIsPressed = false
 }
