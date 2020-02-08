@@ -7,21 +7,27 @@ let operator = null
 // add listeners to number buttons
 let numberButtons = document.getElementsByClassName("number-button")
 for (let numberButton of numberButtons) {
-  numberButton.addEventListener("click", function() {setOperand(numberButton.innerText)})
+  numberButton.addEventListener("click", function() {
+    setOperand(numberButton.innerText)
+  })
 }
 
 // add listeners to operator buttons
 let operatorButtons = document.getElementsByClassName("operator-button")
 for (let operatorButton of operatorButtons) {
-  operatorButton.addEventListener("click", function() {setOperator(operatorButton)
+  operatorButton.addEventListener("click", function() {
+    setOperator(operatorButton)
   })
 }
 
-document.getElementById("decimal-button").addEventListener("click", function(){
-  const scree = document.getElementById("calculator-screen")
-  if (screen.value.includes(".")) {return}
-
-  operator == null ? displayOnScreen(firstOperand += ".") : displayOnScreen(secondOperand += ".")
+document.getElementById("decimal-button").addEventListener("click", function() {
+  const screen = document.getElementById("calculator-screen")
+  if (screen.value.includes(".")) {
+    return
+  }
+  operator == null
+    ? displayOnScreen((firstOperand += "."))
+    : displayOnScreen((secondOperand += "."))
 })
 
 document.getElementById("equal-button").addEventListener("click", function() {
@@ -32,7 +38,7 @@ document.getElementById("equal-button").addEventListener("click", function() {
   displayOnScreen(number)
 })
 
-document.getElementById("clear-button").addEventListener("click", function(){
+document.getElementById("clear-button").addEventListener("click", function() {
   document.getElementById("calculator-screen").value = 0
   firstOperand = null
   secondOperand = null
@@ -40,32 +46,35 @@ document.getElementById("clear-button").addEventListener("click", function(){
 })
 
 document.getElementById("memory-store-button").addEventListener("click", function() {
-  const screen = document.getElementById("calculator-screen")
-  localStorage.setItem("calculator-memory", JSON.stringify(screen.value))
-})
+    const screen = document.getElementById("calculator-screen")
+    localStorage.setItem("calculator-memory", JSON.stringify(screen.value))
+  })
 
 document.getElementById("memory-recall-button").addEventListener("click", function() {
-  const number = localStorage.getItem("calculator-memory")
-  if (number !== null && number !== "") {setOperand(JSON.parse(number))} 
-  else {return}
-})
+    const number = localStorage.getItem("calculator-memory")
+    if (number !== null && number !== "") {
+      setOperand(JSON.parse(number))
+    } else {
+      return
+    }
+  })
 
 document.getElementById("memory-clear-button").addEventListener("click", function() {
-  localStorage.setItem("calculator-memory", "")
-})
+    localStorage.setItem("calculator-memory", "")
+  })
 
 function setOperand(number) {
   if (operator == null) {
     firstOperand === null ? (firstOperand = number) : (firstOperand += number)
     displayOnScreen(firstOperand)
   } else {
-    secondOperand === null ? (secondOperand = number) : (secondOperand += number)
+    secondOperand === null ? (secondOperand = number): (secondOperand += number)
     displayOnScreen(secondOperand)
   }
 }
 
 function setOperator(operatorButton) {
-  const screen  = document.getElementById("calculator-screen")
+  const screen = document.getElementById("calculator-screen")
   if (operator && firstOperand && secondOperand !== null) {
     firstOperand = solveEquation(firstOperand, screen.value).toString()
     secondOperand = null
