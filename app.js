@@ -4,6 +4,8 @@ let firstOperand = null
 let secondOperand = null
 let operator = null
 
+window.addEventListener("load", typeTitle)
+
 // add listeners to number buttons
 const numberButtons = document.getElementsByClassName("number-button")
 for (const numberButton of numberButtons) {
@@ -62,6 +64,20 @@ document.getElementById("memory-recall-button").addEventListener("click", functi
 document.getElementById("memory-clear-button").addEventListener("click", function() {
     localStorage.setItem("calculator-memory", "")
   })
+
+function typeTitle() {
+  const title = 'calculator'
+  let i = 0
+  typeTitleNested()
+    function typeTitleNested() {
+      if (i < title.length) {
+        document.getElementById("title").innerText += title.charAt(i)
+        i++
+        setTimeout(typeTitleNested, 200)
+      }
+    }
+  
+}
 
 function setOperand(number) {
   if (operator == null) {
