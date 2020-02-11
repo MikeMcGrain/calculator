@@ -1,11 +1,23 @@
 @font-face {
   font-family: digital-font;
-  src: url('fonts/DS-DIGI.TTF');
+  src: url("fonts/DS-DIGI.TTF");
 }
 
 body {
   text-align: center;
   background: linear-gradient(to right, black, seagreen);
+}
+
+p {
+  font-size: 8vw;
+  font-family: digital-font;
+  text-align: right;
+  color: lightgreen;
+  background-image: url("images/javascript2.jpeg");
+  background-repeat: no-repeat;
+  background-size: 13% 65%;
+  margin: auto;
+  width: 47%;
 }
 
 button {
@@ -47,9 +59,7 @@ button {
   background-color: seagreen;
 }
 
-#memory-recall-button,
-#memory-store-button,
-#memory-clear-button {
+#memory-recall-button, #memory-store-button, #memory-clear-button {
   background-color: black;
   color: blanchedalmond;
 }

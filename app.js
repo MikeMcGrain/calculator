@@ -5,16 +5,16 @@ let secondOperand = null
 let operator = null
 
 // add listeners to number buttons
-let numberButtons = document.getElementsByClassName("number-button")
-for (let numberButton of numberButtons) {
+const numberButtons = document.getElementsByClassName("number-button")
+for (const numberButton of numberButtons) {
   numberButton.addEventListener("click", function() {
     setOperand(numberButton.innerText)
   })
 }
 
 // add listeners to operator buttons
-let operatorButtons = document.getElementsByClassName("operator-button")
-for (let operatorButton of operatorButtons) {
+const operatorButtons = document.getElementsByClassName("operator-button")
+for (const operatorButton of operatorButtons) {
   operatorButton.addEventListener("click", function() {
     setOperator(operatorButton)
   })
